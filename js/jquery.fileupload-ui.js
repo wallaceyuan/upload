@@ -69,6 +69,8 @@
             // option of the $.ajax upload requests:
             dataType: 'json',
 
+            maxChunkSize: 10000000, // 10 MB
+
             // Error and info messages:
             messages: {
                 unknownError: 'Unknown error'
@@ -100,6 +102,7 @@
                     that = $this.data('blueimp-fileupload') ||
                         $this.data('fileupload'),
                     options = that.options;
+                    console.log('add',options);
                 data.context = that._renderUpload(data.files)
                     .data('data', data)
                     .addClass('processing');
@@ -137,6 +140,7 @@
             },
             // Callback for the start of each file upload request:
             send: function (e, data) {
+                console.log('send');
                 if (e.isDefaultPrevented()) {
                     return false;
                 }
@@ -161,6 +165,7 @@
             },
             // Callback for successful uploads:
             done: function (e, data) {
+                console.log('done');
                 if (e.isDefaultPrevented()) {
                     return false;
                 }
@@ -211,6 +216,7 @@
             },
             // Callback for failed (abort or error) uploads:
             fail: function (e, data) {
+                console.log('fail');
                 if (e.isDefaultPrevented()) {
                     return false;
                 }
@@ -276,6 +282,7 @@
             },
             // Callback for upload progress events:
             progress: function (e, data) {
+                console.log('progressall');
                 if (e.isDefaultPrevented()) {
                     return false;
                 }
@@ -293,6 +300,7 @@
             },
             // Callback for global upload progress events:
             progressall: function (e, data) {
+              console.log('progressall');
                 if (e.isDefaultPrevented()) {
                     return false;
                 }
@@ -517,6 +525,7 @@
             var button = $(e.currentTarget),
                 template = button.closest('.template-upload'),
                 data = template.data('data');
+                console.log('data',data);
             button.prop('disabled', true);
             if (data && data.submit) {
                 data.submit();
@@ -686,6 +695,7 @@
         },
 
         enable: function () {
+            console.log('enable');
             var wasDisabled = false;
             if (this.options.disabled) {
                 wasDisabled = true;
@@ -698,6 +708,7 @@
         },
 
         disable: function () {
+            console.log('disable');
             if (!this.options.disabled) {
                 this.element.find('input, button').prop('disabled', true);
                 this._disableFileInputButton();

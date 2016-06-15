@@ -1377,6 +1377,7 @@
         },
 
         _create: function () {
+            console.log('_create');
             this._initDataAttributes();
             this._initSpecialOptions();
             this._slots = [];
@@ -1405,6 +1406,7 @@
         // must have a files property and can contain additional options:
         // .fileupload('add', {files: filesList});
         add: function (data) {
+          console.log('add','load');
             var that = this;
             if (!data || this.options.disabled) {
                 return;
@@ -1426,6 +1428,7 @@
         // .fileupload('send', {files: filesList});
         // The method returns a Promise object for the file upload call.
         send: function (data) {
+          console.log('send','load');
             if (data && !this.options.disabled) {
                 if (data.fileInput && !data.files) {
                     var that = this,
