@@ -613,7 +613,6 @@
             });
             this._on(fileUploadButtonBar.find('.toggle'), {
                 change: function (e) {
-                    console.log(filesList);
                     filesList.find('.toggle').prop(
                         'checked',
                         $(e.currentTarget).is(':checked')

@@ -94,7 +94,7 @@
                         return data;
                     }
                 }
-                console.log(data);
+                console.log('loadVideo',data);
                 return data;
             },
 
@@ -103,6 +103,7 @@
                 if (data.video && !options.disabled) {
                     data.files[data.index][options.name || 'preview'] = data.video;
                 }
+                console.log('setVideo',data);
                 return data;
             }
 
