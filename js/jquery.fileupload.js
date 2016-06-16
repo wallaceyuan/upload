@@ -650,6 +650,7 @@
                     return $.Deferred().resolveWith(that, args).promise();
                 };
             data.process = function (resolveFunc, rejectFunc) {
+                console.log('data.process');
                 if (resolveFunc || rejectFunc) {
                     data._processQueue = this._processQueue =
                         (this._processQueue || getPromise([this])).then(
@@ -665,6 +666,7 @@
                 return this._processQueue || getPromise([this]);
             };
             data.submit = function () {
+              console.log('submit');
                 if (this.state() !== 'pending') {
                     data.jqXHR = this.jqXHR =
                         (that._trigger(

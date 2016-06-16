@@ -112,8 +112,10 @@
                 that._forceReflow(data.context);
                 that._transition(data.context);
                 data.process(function () {
+                    console.log('add process');
                     return $this.fileupload('process', data);
                 }).always(function () {
+                    console.log('add always');
                     data.context.each(function (index) {
                         $(this).find('.size').text(
                             that._formatFileSize(data.files[index].size)
@@ -121,6 +123,7 @@
                     }).removeClass('processing');
                     that._renderPreviews(data);
                 }).done(function () {
+                    console.log('add always');
                     data.context.find('.start').prop('disabled', false);
                     if ((that._trigger('added', e, data) !== false) &&
                             (options.autoUpload || data.autoUpload) &&
@@ -486,6 +489,7 @@
         },
 
         _renderTemplate: function (func, files) {
+            console.log('_renderTemplate');
             if (!func) {
                 return $();
             }
@@ -507,6 +511,7 @@
         },
 
         _renderUpload: function (files) {
+          console.log('_renderUpload');
             return this._renderTemplate(
                 this.options.uploadTemplate,
                 files
@@ -608,6 +613,7 @@
             });
             this._on(fileUploadButtonBar.find('.toggle'), {
                 change: function (e) {
+                    console.log(filesList);
                     filesList.find('.toggle').prop(
                         'checked',
                         $(e.currentTarget).is(':checked')

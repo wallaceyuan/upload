@@ -30,7 +30,11 @@ $(function () {
             '/cors/result.html?%s'
         )
     );
-
+/*    $('#fileupload').fileupload(
+        'option',
+        'filesContainer',
+        '.files'
+    );*/
     if (window.location.hostname === 'blueimp.github.io') {
         // Demo settings:
         $('#fileupload').fileupload('option', {
@@ -57,6 +61,9 @@ $(function () {
     } else {
         // Load existing files:
         $('#fileupload').addClass('fileupload-processing');
+        console.log()
+
+
         $.ajax({
             // Uncomment the following to send cross-domain cookies:
             //xhrFields: {withCredentials: true},

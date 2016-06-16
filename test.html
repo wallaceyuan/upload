@@ -23,8 +23,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap styles -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<!-- Generic page styles -->
-<link rel="stylesheet" href="css/style.css">
+
 <!-- blueimp Gallery styles -->
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
@@ -32,57 +31,70 @@
 <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/upload.css">
-
+<!-- Generic page styles -->
+<link rel="stylesheet" href="css/style.css">
 <!-- CSS adjustments for browsers with JavaScript disabled -->
 <noscript><link rel="stylesheet" href="css/jquery.fileupload-noscript.css"></noscript>
 <noscript><link rel="stylesheet" href="css/jquery.fileupload-ui-noscript.css"></noscript>
 </head>
 <body>
-<div class="container">
-  <div class="main-container">
-    <div class="main-inner-m">
-      <div class="upload-wrp">
-        <div class="upload-container">
+<div class="main">
+  <div class="container ">
+    <div class="uploadWrp">
+      <div class="upload-wrp" id="fileupload">
           <!-- The file upload form used as target for the file upload widget -->
-          <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
-              <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-              <div class="row fileupload-buttonbar">
-                  <div class="col-lg-7">
-                      <!-- The fileinput-button span is used to style the file input field as button -->
-                      <span class="btn btn-success fileinput-button">
-                          <i class="glyphicon glyphicon-plus"></i>
-                          <span>Add files...</span>
-                          <input type="file" name="files[]" multiple>
-                      </span>
-                      <button type="submit" class="btn btn-primary start">
-                          <i class="glyphicon glyphicon-upload"></i>
-                          <span>Start upload</span>
-                      </button>
-                      <button type="reset" class="btn btn-warning cancel">
-                          <i class="glyphicon glyphicon-ban-circle"></i>
-                          <span>Cancel upload</span>
-                      </button>
-                      <button type="button" class="btn btn-danger delete">
-                          <i class="glyphicon glyphicon-trash"></i>
-                          <span>Delete</span>
-                      </button>
-                      <input type="checkbox" class="toggle">
-                      <!-- The global file processing state -->
-                      <span class="fileupload-process"></span>
-                  </div>
-                  <!-- The global progress state -->
-                  <div class="col-lg-5 fileupload-progress fade">
-                      <!-- The global progress bar -->
-                      <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                          <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-                      </div>
-                      <!-- The extended global progress state -->
-                      <div class="progress-extended">&nbsp;</div>
-                  </div>
+          <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+          <div class="row fileupload-buttonbar">
+              <div id="stepA">
+              		<div class="container step-a-wrp" id="stepADrop">
+              			<div class="upload-cnt">
+              				<div id="pluploadWrp1" style="position: relative;">
+              					<div class="upload-btn" id="pluploadBtn1" data-home-button="click" style="z-index: 1;">
+              					</div>
+                        <span class="btn btn-success fileinput-button">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Add files...</span>
+                            <input  type="file" name="files[]" multiple data-url="server/php/">
+                        </span>
+              				</div>
+              				<div class="upload-tip">
+              					拖拽视频到此处也可上传
+              				</div>
+              			</div>
+              		</div>
               </div>
-              <!-- The table listing the files available for upload/download -->
-              <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-          </form>
+              <div id="stepB">
+                <div class="col-lg-7">
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+                    <button type="submit" class="btn btn-primary start">
+                        <i class="glyphicon glyphicon-upload"></i>
+                        <span>Start upload</span>
+                    </button>
+                    <button type="reset" class="btn btn-warning cancel">
+                        <i class="glyphicon glyphicon-ban-circle"></i>
+                        <span>Cancel upload</span>
+                    </button>
+                    <button type="button" class="btn btn-danger delete">
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <span>Delete</span>
+                    </button>
+                    <input type="checkbox" class="toggle">
+                    <!-- The global file processing state -->
+                    <span class="fileupload-process"></span>
+                </div>
+                <!-- The global progress state -->
+                <div class="col-lg-5 fileupload-progress fade">
+                    <!-- The global progress bar -->
+                    <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                    </div>
+                    <!-- The extended global progress state -->
+                    <div class="progress-extended">&nbsp;</div>
+                </div>
+                <!-- The table listing the files available for upload/download -->
+                <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+              </div>
+          </div>
           <br>
           <div class="panel panel-default">
               <div class="panel-heading">
@@ -97,14 +109,12 @@
                       <li>Please refer to the <a href="https://github.com/blueimp/jQuery-File-Upload">project website</a> and <a href="https://github.com/blueimp/jQuery-File-Upload/wiki">documentation</a> for more information.</li>
                       <li>Built with the <a href="http://getbootstrap.com/">Bootstrap</a> CSS framework and Icons from <a href="http://glyphicons.com/">Glyphicons</a>.</li>
                   </ul>
-              </div>
+                </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
 </div>
-
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}

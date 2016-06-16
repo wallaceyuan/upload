@@ -13,3 +13,11 @@
 body {
   padding-top: 60px;
 }
+#pluploadWrp1 .fileinput-button{
+  position: absolute;
+  top: 0px;
+  left: 360px;
+  width: 260px;
+  height: 74px;
+  overflow: hidden;
+}
